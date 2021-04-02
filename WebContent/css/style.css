@@ -1,0 +1,25 @@
+@charset "UTF-8";
+h1 {
+	font-size: 3em; /* 글자 크기 */
+}
+
+p {
+	font-size: 1em; /* 글자 크기 */
+}
+
+.accent {
+	font-variant: small-caps; /* 작은 대문자 */
+	font-weight: bold; /* 굵게 */
+}
+
+.accent1 {
+	font-style:italic;  /* 이탤릭체로 */
+}
+
+p#id{
+	font-style:normal;
+}
+
+p.txt {
+	font: italic 12px/24px 돋움; /* 글꼴 스타일, 크기, 줄간격, 글꼴 */
+}

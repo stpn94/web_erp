@@ -1,0 +1,82 @@
+@charset "UTF-8";
+h1 {
+	color: rgb(0, 200, 0);
+} /* rgb 값 사용 - 녹색 계열 */
+
+h2 {
+	color: blue;
+} /* 색상 이름 사용 - 파랑 */
+
+.accent {
+	color: #f00;
+} /* 16진수 사용 - 빨강, #ff0000으로도 사용 */
+
+img {
+	float: right; /* 오른쪽 정렬 */
+	margin-right: 10px; /* 오른쪽 마진 여백 */
+}
+
+p {
+	line-height: 1.8;
+}
+
+a {
+	text-decoration: none;
+} /* 밑줄 없앰 */
+
+.edited {
+	text-decoration: line-through;
+} /* 취소선 */
+
+.trans1 {
+	text-transform: uppercase;
+} /* 대문자로 */
+
+.trans2 {
+	text-transform: capitalize;
+} /* 첫글자만 대문자로 */
+
+h1  {
+	font-size: 100px; /* 글자 크기 */
+	font-family: "Arial Rounded MT"; /* 글꼴 */
+}
+
+.shadow1 {
+	color: orange; /* 글자색 */
+	text-shadow: 1px 1px; /* 텍스트 그림자 */
+}
+
+.shadow2 {
+	text-shadow: 5px 5px 3px #f00; /* 텍스트 그림자 */
+}
+
+.shadow3 {
+	color: #fff; /* 글자색 */
+	text-shadow: 7px -7px 5px #000; /* 텍스트 그림자 */
+}
+
+#back {
+	background:#222;
+}
+
+.shadow4 {
+	font-size:80px; /* 글자 크기 */
+	font-family: "Arial Rounded MT"; /* 글꼴 */
+	letter-spacing: 4px; /* 자간 */
+	
+	color: #000; /* 글자색 */
+	text-shadow: 0 0 4px #ccc, 0 -5px 4px #ff3, 2px -10px 6px #fd3, -2px
+		-15px 11px #f80, 2px -19px 18px #f20; /* 텍스트 그림자 */
+}
+
+#letter {
+	font-size: 40px;
+} /* 글자 크기 */
+
+.letter1 {
+	letter-spacing: 0.2em; /* 자간 */
+}
+
+.letter2 {
+	letter-spacing: 0.5em; /* 자간 */
+}
