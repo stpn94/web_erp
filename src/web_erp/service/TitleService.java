@@ -22,5 +22,17 @@ public class TitleService {
 	public void addTitle(Title title) {
 		dao.insertTitle(title);
 	}
+	
+	public void upTitle(Title title) {
+		dao.updateTitle(title);
+	}
+	
+	public void delTitle(int title) {
+		dao.deleteTitle(title);
+	}
+	
+	public Title showTitle(Title title) {
+		return dao.selectTitleByNo(title);
+	}
 
 }

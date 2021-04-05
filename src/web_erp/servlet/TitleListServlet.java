@@ -12,29 +12,26 @@ import javax.servlet.http.HttpServletResponse;
 import web_erp.dto.Title;
 import web_erp.service.TitleService;
 
-@WebServlet("/TitleServlet")
-public class TitleServlet extends HttpServlet {
+@WebServlet("/TitleListServlet")
+public class TitleListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private TitleService service;
 
-	public TitleServlet() {
+	public TitleListServlet() {
 		service = new TitleService();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
-		List<Title> list = service.showTitles();
-		list.stream().forEach(System.out::println);
 		
-		request.setAttribute("list", list); // 리퀘스트에 담았다.
-		request.getRequestDispatcher("titleList.jsp").forward(request, response);
-//		PrintWriter out = response.getWriter();
-//
-//		for (Title t : list) {
-//			out.printf("%s - %s<br>", t.gettNo(), t.gettName());
-//		}
+		int no = Integer.parseInt(request.getParameter("titleNo").trim());
+		Title title = service.showTitle(new Title(no));
 		
+		System.out.println(title);
+		request.setAttribute("title", title);
+
+		request.getRequestDispatcher("titleInfo.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

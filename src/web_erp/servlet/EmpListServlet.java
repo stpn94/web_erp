@@ -1,7 +1,6 @@
 package web_erp.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,32 +8,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import web_erp.dto.Title;
-import web_erp.service.TitleService;
+import web_erp.dto.Employee;
+import web_erp.service.EmpService;
 
-@WebServlet("/TitleServlet")
-public class TitleServlet extends HttpServlet {
+@WebServlet("/EmpListServlet")
+public class EmpListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private TitleService service;
+	private EmpService service;
 
-	public TitleServlet() {
-		service = new TitleService();
+	public EmpListServlet() {
+		service = new EmpService();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
-		List<Title> list = service.showTitles();
-		list.stream().forEach(System.out::println);
+
+		int empno = Integer.parseInt(request.getParameter("empNo").trim());
+		Employee emp = service.showEmp(new Employee(empno));
+
+		System.out.println(emp);
+		request.setAttribute("emp", emp);
 		
-		request.setAttribute("list", list); // 리퀘스트에 담았다.
-		request.getRequestDispatcher("titleList.jsp").forward(request, response);
-//		PrintWriter out = response.getWriter();
-//
-//		for (Title t : list) {
-//			out.printf("%s - %s<br>", t.gettNo(), t.gettName());
-//		}
-		
+		request.getRequestDispatcher("empInfo.jsp").forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

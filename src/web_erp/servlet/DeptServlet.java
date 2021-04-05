@@ -9,31 +9,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import web_erp.dto.Department;
 import web_erp.dto.Title;
-import web_erp.service.TitleService;
+import web_erp.service.DeptService;
 
-@WebServlet("/TitleServlet")
-public class TitleServlet extends HttpServlet {
+@WebServlet("/DeptServlet")
+public class DeptServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private TitleService service;
+	private DeptService service;
 
-	public TitleServlet() {
-		service = new TitleService();
+	public DeptServlet() {
+		service = new DeptService();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
-		List<Title> list = service.showTitles();
+		List<Department> list = service.showDepartments();
 		list.stream().forEach(System.out::println);
 		
 		request.setAttribute("list", list); // 리퀘스트에 담았다.
-		request.getRequestDispatcher("titleList.jsp").forward(request, response);
-//		PrintWriter out = response.getWriter();
-//
-//		for (Title t : list) {
-//			out.printf("%s - %s<br>", t.gettNo(), t.gettName());
-//		}
+		request.getRequestDispatcher("departmentList.jsp").forward(request, response);
 		
 	}
 

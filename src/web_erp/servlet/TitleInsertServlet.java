@@ -1,7 +1,6 @@
 package web_erp.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,29 +11,29 @@ import javax.servlet.http.HttpServletResponse;
 import web_erp.dto.Title;
 import web_erp.service.TitleService;
 
-@WebServlet("/TitleServlet")
-public class TitleServlet extends HttpServlet {
+@WebServlet("/TitleInsertServlet")
+public class TitleInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private TitleService service;
 
-	public TitleServlet() {
+	public TitleInsertServlet() {
 		service = new TitleService();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html; charset=UTF-8");
-		List<Title> list = service.showTitles();
-		list.stream().forEach(System.out::println);
-		
-		request.setAttribute("list", list); // 리퀘스트에 담았다.
-		request.getRequestDispatcher("titleList.jsp").forward(request, response);
-//		PrintWriter out = response.getWriter();
-//
-//		for (Title t : list) {
-//			out.printf("%s - %s<br>", t.gettNo(), t.gettName());
-//		}
-		
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
+
+		int no = Integer.parseInt(request.getParameter("tno").trim());
+		String name = request.getParameter("tname");
+
+		Title title = new Title(no, name);
+		System.out.println(title);
+
+		service.addTitle(title);
+		response.sendRedirect("TitleServlet");
+//      request.getRequestDispatcher("TitleListServlet").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -82,6 +82,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return new Employee(empNo, empName, title, manager, salary, dept);
 	}
 
+
 	// -------------------------------------------------------------------------
 
 	@Override
@@ -124,16 +125,23 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public int updateEmployee(Employee employee) {
-		String sql = "update employee set empName = ? where empNo = ? ";
-		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+		String sql = "update employee " + 
+				     "   set empname = ?, title = ?, manager=?, salary=?, dept=?" + 
+				     " where empno = ?";
+		try(PreparedStatement pstmt = con.prepareStatement(sql)){
 			pstmt.setString(1, employee.getEmpName());
-			pstmt.setInt(2, employee.getEmpNo());
+			pstmt.setInt(2, employee.getTitle().getNo());
+			pstmt.setInt(3, employee.getManager().getEmpNo());
+			pstmt.setInt(4, employee.getSalary());
+			pstmt.setInt(5, employee.getDept().getDeptNo());
+			pstmt.setInt(6, employee.getEmpNo());
 			return pstmt.executeUpdate();
-		} catch (Exception e) {
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return 0;
 	}
-
+	
 	@Override
 	public int deleteEmployee(int EmployeeNo) {
 		String sql = "delete from employee where empNo = ? ";

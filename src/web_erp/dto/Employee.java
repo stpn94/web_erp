@@ -3,7 +3,9 @@ package web_erp.dto;
 public class Employee {
 	private int empNo;
 	private String empName;
+	
 	private Title title;
+	
 	private Employee manager;
 	private int salary;
 	private Department dept;
